@@ -1,11 +1,11 @@
 const fs = require('fs');
 const { Client, Collection } = require('discord.js');
 const { token } = require('./config.json');
-const urban = require('./commands/fun/urban.js');
 
 const client = new Client();
 client.commands = new Collection();
 
+// Event Handler
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -17,6 +17,7 @@ for (const file of eventFiles) {
     }
 }
 
+// Command Handler
 const commandFolders = fs.readdirSync('./commands');
 
 for (const folder of commandFolders) {
