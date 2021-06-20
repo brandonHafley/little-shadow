@@ -1,5 +1,4 @@
 const ytdl = require('ytdl-core');
-const join = require('./join.js');
 
 module.exports = {
     name: 'play',
