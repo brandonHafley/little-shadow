@@ -1,11 +1,19 @@
-const { prefix } = require('../config.json');
+const { prefix, ytkey } = require('../config.json');
+const { MusicBot } = require('discord-music-system');
 
 module.exports = {
     name: 'message',
-    execute(message, client) {
+    async execute(message, client) {
         const args = message.content.slice(prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName);
+
+        client.musicBot = new MusicBot(client, {
+            ytApiKey: ytkey,
+            prefix: prefix,
+            language: 'en'
+        });
+        client.musicBot.onMessage(message);
 
         console.log(`${message.author.tag} in #${message.channel.name} sent: ${message.content} - ${message.createdAt}`);
 
