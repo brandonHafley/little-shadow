@@ -3,6 +3,7 @@ const ytdl = require('ytdl-core');
 module.exports = {
     name: 'play',
     permissions: 'ADMINISTRATOR',
+    description: 'Bot joins voice channel and plays youtube link audio',
     async execute(message, args) {
         try {
             if (message.member.voice.channel) {
