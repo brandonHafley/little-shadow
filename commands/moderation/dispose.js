@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'remove',
+    name: 'dispose',
     description: 'Deletes specified amount of messages.',
     usage: '<number>',
     permissions: 'ADMINISTRATOR',

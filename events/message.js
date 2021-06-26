@@ -17,9 +17,7 @@ module.exports = {
 
         console.log(`${message.author.tag} in #${message.channel.name} sent: ${message.content} - ${message.createdAt}`);
 
-        if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-        if (!client.commands.has(commandName)) return;
+        if (!message.content.startsWith(prefix) || !client.commands.has(commandName) || message.author.bot) return;
 
         if (command.permissions) {
             const authorPerms = message.channel.permissionsFor(message.author);
@@ -30,11 +28,9 @@ module.exports = {
 
         if (command.args && !args.length) {
             let reply = `You didn't provide any arguments, ${message.author}!`;
-
             if (command.usage) {
                 reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
             }
-
             return message.channel.send(reply);
         }
 
