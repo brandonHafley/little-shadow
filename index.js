@@ -1,8 +1,9 @@
 const fs = require('fs');
-const { Client, Collection } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
+const { time } = require('@discordjs/builders');
 const { token } = require('./config.json');
 
-const client = new Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.commands = new Collection();
 
 // Event Handler
@@ -12,7 +13,7 @@ for (const file of eventFiles) {
     if (event.once) {
         client.once(event.name, (...args) => event.execute(...args, client));
     } else {
-        client.on(event.name, (...args) => event.execute(...args, client));
+        client.on(event.name, (...args) => event.execute(...args, client, time));
     }
 }
 
